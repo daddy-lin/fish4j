@@ -1,0 +1,29 @@
+group 'org.fish'
+version '0.0.1-SNAPSHOT'
+
+subprojects {
+    apply plugin: 'maven-publish'
+    apply plugin: 'java'
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId project.parent.group
+                artifactId project.name
+                version project.parent.version
+                from components.java
+            }
+        }
+
+        repositories {
+            maven {
+                name = "OSSRH"
+                url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_PASSWORD")
+                }
+            }
+        }
+    }
+}

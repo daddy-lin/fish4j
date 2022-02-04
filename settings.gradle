@@ -1,0 +1,5 @@
+rootProject.name = 'fish4j'
+
+include('fish4j-api')
+include('fish4j-impl')
+
