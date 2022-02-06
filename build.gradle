@@ -1,4 +1,4 @@
-group 'org.fish'
+group 'io.github.danniod'
 version '0.0.1-SNAPSHOT'
 
 subprojects {
@@ -17,11 +17,19 @@ subprojects {
 
         repositories {
             maven {
-                name = "OSSRH"
-                url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                name = "release"
+                url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
                 credentials {
                     username = System.getenv("MAVEN_USERNAME")
-                    password = System.getenv("MAVEN_PASSWORD")
+                    password = System.getenv("MAVEN_TOKEN")
+                }
+            }
+            maven {
+                name = "snapshot"
+                url = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                credentials {
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_TOKEN")
                 }
             }
         }
