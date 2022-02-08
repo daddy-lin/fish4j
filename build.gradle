@@ -1,5 +1,5 @@
-group 'io.github.danniod'
-version '0.0.1-SNAPSHOT'
+group 'io.github.danniod.fish4j'
+version '0.0.4-SNAPSHOT'
 
 subprojects {
     apply plugin: 'maven-publish'
