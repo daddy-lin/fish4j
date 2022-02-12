@@ -1,6 +1,7 @@
 package io.github.danniod.fish4j.api;
 
 import io.github.danniod.fish4j.entites.FishPiUser;
+import io.github.danniod.fish4j.param.MessageParam;
 import io.github.danniod.fish4j.param.auth.UserApiParam;
 import lombok.SneakyThrows;
 import okhttp3.OkHttpClient;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
+
+import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -64,5 +67,18 @@ class ApiServiceTest {
         final FishPiUser user1 = fishApi.getUser(fishApi.getApiKey(user));
         assertNotNull(user1);
 
+    }
+
+    @Test
+    @SneakyThrows
+    public void sendMessageTest() {
+        fishApi.sendMessage(MessageParam.builder().apiKey("FgKt3UMtyNiimukgWBqYyzJp4VrUPKVd").content("test").build());
+
+    }
+
+    @Test
+    public void uploadTest() {
+        File file = new File("/Users/danny/Desktop/animate.gif");
+        fishApi.upload(file);
     }
 }
