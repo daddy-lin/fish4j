@@ -3,6 +3,7 @@ package io.github.danniod.fish4j.api;
 import io.github.danniod.fish4j.client.RetrofitClient;
 import io.github.danniod.fish4j.entites.FishPiUser;
 import io.github.danniod.fish4j.entites.Storage;
+import io.github.danniod.fish4j.exception.FishApiException;
 import io.github.danniod.fish4j.param.MessageParam;
 import io.github.danniod.fish4j.param.RedPacketOpenParam;
 import io.github.danniod.fish4j.param.RedPacketSendParam;
@@ -13,6 +14,7 @@ import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 
 import java.io.File;
+import java.io.IOException;
 
 public class FishApiImpl implements FishApi {
 
@@ -24,28 +26,28 @@ public class FishApiImpl implements FishApi {
 
 
     @Override
-    public String getApiKey(UserApiParam param) {
+    public String getApiKey(UserApiParam param) throws FishApiException, IOException {
         return RetrofitClient.execute(apiService.getKey(param)).getKey();
     }
 
     @Override
-    public FishPiUser getUser(String apiKey) {
+    public FishPiUser getUser(String apiKey) throws FishApiException, IOException {
         return RetrofitClient.execute(apiService.getUser(apiKey)).getData();
     }
 
     @Override
-    public Object getUserByName(String username) {
+    public Object getUserByName(String username) throws FishApiException, IOException {
         return null;
     }
 
     @Override
-    public Boolean sendMessage(MessageParam message) {
+    public Boolean sendMessage(MessageParam message) throws FishApiException, IOException {
         RetrofitClient.execute(apiService.sendMessage(message));
         return true;
     }
 
     @Override
-    public Boolean sendRedPocket(RedPacketSendParam redPacket) {
+    public Boolean sendRedPocket(RedPacketSendParam redPacket) throws FishApiException, IOException {
         return sendMessage(MessageParam.builder()
                 .apiKey(redPacket.getApiKey())
                 .content(redPacket.toString())
@@ -53,12 +55,12 @@ public class FishApiImpl implements FishApi {
     }
 
     @Override
-    public Object openRedPocket(RedPacketOpenParam openRedPacket) {
+    public Object openRedPocket(RedPacketOpenParam openRedPacket) throws FishApiException, IOException {
         return RetrofitClient.execute(apiService.openRedPocket(openRedPacket));
     }
 
     @Override
-    public Storage upload(File file) {
+    public Storage upload(File file) throws FishApiException, IOException {
      return RetrofitClient.execute(apiService.upload(MultipartBody.Part.createFormData("file[]",
                 file.getName(),
                 RequestBody.create(MediaType.parse("multipart/form-data"), file)))).getData();

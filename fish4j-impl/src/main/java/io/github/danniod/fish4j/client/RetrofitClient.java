@@ -1,16 +1,16 @@
 package io.github.danniod.fish4j.client;
 
 import io.github.danniod.fish4j.exception.FishApiException;
-import lombok.SneakyThrows;
 import io.github.danniod.fish4j.response.base.Result;
 import retrofit2.Call;
 import retrofit2.Response;
 
+import java.io.IOException;
+
 public class RetrofitClient {
 
 
-    @SneakyThrows
-    public static <T> Result<T> execute(Call<Result<T>> instance) {
+    public static <T> Result<T> execute(Call<Result<T>> instance) throws FishApiException, IOException {
         Response<Result<T>> response = instance.execute();
         if (!response.isSuccessful() || response.body() == null) {
             throw new FishApiException(response.code(), response.message());

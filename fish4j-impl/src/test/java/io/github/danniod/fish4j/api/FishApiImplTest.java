@@ -1,6 +1,7 @@
 package io.github.danniod.fish4j.api;
 
 import io.github.danniod.fish4j.entites.FishPiUser;
+import io.github.danniod.fish4j.entites.Storage;
 import io.github.danniod.fish4j.param.MessageParam;
 import io.github.danniod.fish4j.param.auth.UserApiParam;
 import lombok.SneakyThrows;
@@ -15,7 +16,6 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-//@Slf4j
 class ApiServiceTest {
 
 
@@ -77,8 +77,12 @@ class ApiServiceTest {
     }
 
     @Test
+    @SneakyThrows
     public void uploadTest() {
+        final long begin = System.currentTimeMillis();
         File file = new File("/Users/danny/Desktop/animate.gif");
-        fishApi.upload(file);
+        final Storage upload = fishApi.upload(file);
+        System.out.println(upload);
+        System.out.println(System.currentTimeMillis() - begin);
     }
 }
