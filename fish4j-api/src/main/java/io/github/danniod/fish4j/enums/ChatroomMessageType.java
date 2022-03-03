@@ -15,6 +15,7 @@ public enum ChatroomMessageType {
     RED_PACKET("redPacket", RedPacketMessage.class),
     RED_PACKET_STATUS("redPacketStatus", RedPacketStatusMessage.class),
     REVOKE("revoke", RevokeMessage.class),
+    DISCUSS_CHANGED("discussChanged", DiscussChangedMessage.class),
     UNKNOWN("default", ChatroomMessage.class);
 
 

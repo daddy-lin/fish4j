@@ -10,7 +10,10 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public @Data class OnlineMessage extends ChatroomMessage {
 
+    private String discussing;
+
     private Integer onlineChatCnt;
+
     private List<OnlineUser> users;
 
 
