@@ -20,7 +20,11 @@ public interface FishApi {
 
     Object getUserByName(String username) throws FishApiException, IOException;
 
+    Double getLiveness(String apiKey) throws FishApiException, IOException;
 
+    Integer collectLivenessReward(String apiKey) throws FishApiException, IOException;
+
+    Boolean isCollectedLivenessReward(String apiKey) throws FishApiException, IOException;
 
     Boolean sendMessage(MessageParam message) throws FishApiException, IOException;
 

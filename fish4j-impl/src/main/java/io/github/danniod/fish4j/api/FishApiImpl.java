@@ -41,6 +41,21 @@ public class FishApiImpl implements FishApi {
     }
 
     @Override
+    public Double getLiveness(String apiKey) throws FishApiException, IOException {
+        return RetrofitClient.execute(apiService.getLiveness(apiKey)).get("liveness");
+    }
+
+    @Override
+    public Integer collectLivenessReward(String apiKey) throws FishApiException, IOException {
+        return RetrofitClient.execute(apiService.collectLivenessReward(apiKey)).get("sum");
+    }
+
+    @Override
+    public Boolean isCollectedLivenessReward(String apiKey) throws FishApiException, IOException {
+        return RetrofitClient.execute(apiService.isCollectedLivenessReward(apiKey)).get("isCollectedYesterdayLivenessReward");
+    }
+
+    @Override
     public Boolean sendMessage(MessageParam message) throws FishApiException, IOException {
         RetrofitClient.execute(apiService.sendMessage(message));
         return true;

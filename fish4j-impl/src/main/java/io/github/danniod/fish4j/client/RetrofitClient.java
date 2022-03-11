@@ -10,13 +10,16 @@ import java.io.IOException;
 public class RetrofitClient {
 
 
-    public static <T> Result<T> execute(Call<Result<T>> instance) throws FishApiException, IOException {
-        Response<Result<T>> response = instance.execute();
+    public static <T> T execute(Call<T> instance) throws FishApiException, IOException {
+        Response<T> response = instance.execute();
         if (!response.isSuccessful() || response.body() == null) {
             throw new FishApiException(response.code(), response.message());
         }
-        if (!response.body().isSuccess()) {
-            throw new FishApiException(response.body().getCode(), response.body().getMsg());
+        if (instance instanceof Result) {
+            final Result<?> body = (Result<?>) response.body();
+            if (!body.isSuccess()) {
+                throw new FishApiException(body.getCode(), body.getMsg());
+            }
         }
         return response.body();
     }

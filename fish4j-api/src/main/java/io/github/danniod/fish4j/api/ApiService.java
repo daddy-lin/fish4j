@@ -10,6 +10,8 @@ import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+import java.util.Map;
+
 public interface ApiService {
 
     @POST("/api/getKey")
@@ -19,8 +21,16 @@ public interface ApiService {
     Call<Result<FishPiUser>> getUser(@Query("apiKey") String apiKey);
 
     @GET("user/{username}")
-    Call<Object> getUserByName(@Path("username")String username);
+    Call<Object> getUserByName(@Path("username") String username);
 
+    @GET("/user/liveness")
+    Call<Map<String, Double>> getLiveness(@Query("apiKey") String apiKey);
+
+    @GET("/activity/yesterday-liveness-reward-api")
+    Call<Map<String, Integer>> collectLivenessReward(@Query("apiKey") String apiKey);
+
+    @GET("/api/activity/is-collected-liveness")
+    Call<Map<String, Boolean>> isCollectedLivenessReward(@Query("apiKey") String apiKey);
 
     @POST("/chat-room/send")
     Call<Result<Void>> sendMessage(@Body MessageParam message);
