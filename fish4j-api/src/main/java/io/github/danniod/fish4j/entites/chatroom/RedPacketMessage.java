@@ -50,13 +50,13 @@ public @Data class RedPacketMessage extends ChatroomMessage {
 
         private String msgType;
 
-        private String money;
+        private Integer money;
 
-        private String count;
+        private Integer count;
 
         private String type;
 
-        private String got;
+        private Integer got;
 
         private List<String> who;
     }
