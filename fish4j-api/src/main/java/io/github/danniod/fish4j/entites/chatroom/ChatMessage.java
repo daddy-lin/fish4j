@@ -6,14 +6,13 @@ import io.github.danniod.fish4j.entites.ChatroomMessage;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 public @Data class ChatMessage extends ChatroomMessage {
 
     @JsonProperty("oId")
-    private BigInteger id;
+    private Long id;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
