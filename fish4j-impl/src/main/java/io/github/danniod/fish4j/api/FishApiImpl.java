@@ -3,6 +3,7 @@ package io.github.danniod.fish4j.api;
 import io.github.danniod.fish4j.client.RetrofitClient;
 import io.github.danniod.fish4j.entites.FishPiUser;
 import io.github.danniod.fish4j.entites.Storage;
+import io.github.danniod.fish4j.entites.chatroom.OpenedRedPocket;
 import io.github.danniod.fish4j.exception.FishApiException;
 import io.github.danniod.fish4j.param.MessageParam;
 import io.github.danniod.fish4j.param.RedPacketOpenParam;
@@ -70,7 +71,7 @@ public class FishApiImpl implements FishApi {
     }
 
     @Override
-    public Object openRedPocket(RedPacketOpenParam openRedPacket) throws FishApiException, IOException {
+    public OpenedRedPocket openRedPocket(RedPacketOpenParam openRedPacket) throws FishApiException, IOException {
         return RetrofitClient.execute(apiService.openRedPocket(openRedPacket));
     }
 

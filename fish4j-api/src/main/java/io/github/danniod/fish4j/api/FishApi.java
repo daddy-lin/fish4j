@@ -2,6 +2,7 @@ package io.github.danniod.fish4j.api;
 
 import io.github.danniod.fish4j.entites.FishPiUser;
 import io.github.danniod.fish4j.entites.Storage;
+import io.github.danniod.fish4j.entites.chatroom.OpenedRedPocket;
 import io.github.danniod.fish4j.exception.FishApiException;
 import io.github.danniod.fish4j.param.MessageParam;
 import io.github.danniod.fish4j.param.RedPacketOpenParam;
@@ -30,7 +31,7 @@ public interface FishApi {
 
     Boolean sendRedPocket(RedPacketSendParam redPocket) throws FishApiException, IOException;
 
-    Object openRedPocket(RedPacketOpenParam openRedPacket) throws FishApiException, IOException;
+    OpenedRedPocket openRedPocket(RedPacketOpenParam openRedPacket) throws FishApiException, IOException;
 
 
     Storage upload(File file) throws FishApiException, IOException;

@@ -2,6 +2,7 @@ package io.github.danniod.fish4j.api;
 
 import io.github.danniod.fish4j.entites.FishPiUser;
 import io.github.danniod.fish4j.entites.Storage;
+import io.github.danniod.fish4j.entites.chatroom.OpenedRedPocket;
 import io.github.danniod.fish4j.param.MessageParam;
 import io.github.danniod.fish4j.param.RedPacketOpenParam;
 import io.github.danniod.fish4j.param.auth.UserApiParam;
@@ -37,7 +38,7 @@ public interface ApiService {
 
 
     @POST("/chat-room/red-packet/open")
-    Call<Result<Object>> openRedPocket(@Body RedPacketOpenParam openRedPacket);
+    Call<OpenedRedPocket> openRedPocket(@Body RedPacketOpenParam openRedPacket);
 
 
     @Multipart
